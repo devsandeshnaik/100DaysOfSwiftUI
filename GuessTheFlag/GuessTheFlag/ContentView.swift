@@ -8,6 +8,19 @@
 
 import SwiftUI
 
+//Day 24 Challenge 3
+struct Flag: View {
+    var forCountry: String
+    
+    var body: some View {
+        Image(forCountry)
+            .renderingMode(.original)
+            .clipShape(Capsule())
+            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+            .shadow(color: .black, radius: 2)
+    }
+}
+
 struct ContentView: View {
     @State private var countries = ["Estonia",
                                     "France",
@@ -44,11 +57,7 @@ struct ContentView: View {
                     Button(action: {
                         self.flagTapped(number)
                     }) {
-                        Image(self.countries[number])
-                            .renderingMode(.original)
-                        .clipShape(Capsule())
-                            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
-                            .shadow(color: .black, radius: 2)
+                        Flag(forCountry: self.countries[number])
                     }
                 }
                 
