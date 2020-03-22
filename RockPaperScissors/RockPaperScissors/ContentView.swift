@@ -10,26 +10,23 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var showFinalScore = false
+    @State private var computerScore = 0
+    @State private var userScore = 0
+    @State private var round = 0
     
+    private let allItems = ["Rock", "Paper", "Scissor"]
+    private let userOptions = ["Win", "Loose"]
     
-    @State var score = 0
-    @State var showComputerOption = false
-    
-    let allItems = ["Rock", "Paper", "Scissor"]
-    var computerItem: String {
-        allItems.randomElement()!
-    }
-    
-    var userTaget: String {
-        ["Win","Loose"].randomElement()!
-    }
+    @State private var computerItem = ""
+    @State private var userTaget = ""
+
     
     var body: some View {
         NavigationView {
             VStack( spacing: 16) {
                 Spacer()
-                Text("\(score)")
-                    .font(.headline)
+
                 Text(userTaget)
                     .frame(width: 300, height: 150, alignment: .center)
                     .background(userTaget == "Win" ? Color.green : Color.red)
@@ -50,10 +47,24 @@ struct ContentView: View {
             }
             .padding()
             .navigationBarTitle("RockPaperScissor")
+            .onAppear(perform: startGame)
         }
-        .alert(isPresented: $showComputerOption) { () -> Alert in
-            Alert(title: Text("Final score"), message: Text(""), dismissButton: .default(Text("Ok")))
+        .alert(isPresented: $showFinalScore) { () -> Alert in
+            Alert(title: Text("Final score"), message: Text("Computer: \(computerScore) \n User: \(userScore)"), dismissButton: .default(Text("OK"), action: {
+                self.startGame()
+            }))
         }
+    }
+    
+    func startGame() {
+        computerScore = 0
+        userScore = 0
+        
+        computerItem = allItems.randomElement()!
+        userTaget = userOptions.randomElement()!
+        
+        round += 1
+        
     }
     
     
@@ -93,11 +104,21 @@ struct ContentView: View {
         
         
         if userStatus == userTaget {
-            score += 1
+            userScore += 1
         } else {
-            score -= 1
+            computerScore += 1
         }
         
+        round += 1
+        
+        if round == 11 {
+            showFinalScore = true
+            return
+        }
+        
+        userTaget = userOptions.randomElement()!
+        computerItem = allItems.randomElement()!
+
     }
 }
 
