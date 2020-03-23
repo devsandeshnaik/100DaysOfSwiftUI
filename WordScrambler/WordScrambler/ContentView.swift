@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var rootWord = ""
     @State private var newWord = ""
     
+    @State private var score = 0
+    
     
     @State private var errorTitle = ""
     @State private var errorMessage = ""
@@ -32,12 +34,16 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle")
                     Text($0)
                 }
+                
+                Text("Score: \(score)")
+                    .font(.headline)
             }
             .navigationBarTitle(rootWord)
             .onAppear(perform: startGame)
             .alert(isPresented: $showingError) { () -> Alert in
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("Ok")))
             }
+            .navigationBarItems(trailing: Button("New Game") { self.startGame() })
         }
     }
     
@@ -63,6 +69,7 @@ struct ContentView: View {
         }
         
         usedWord.insert(answer, at: 0)
+        score += answer.count * usedWord.count
         newWord = ""
     }
     
@@ -71,6 +78,7 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordsUrl) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                usedWord = []
                 return
             }
         }
@@ -96,6 +104,9 @@ struct ContentView: View {
     }
     
     func isReal(word: String) -> Bool {
+        
+        guard word.count > 2, word != rootWord else { return false }
+        
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let mispelledRange = checker.rangeOfMisspelledWord(in: word,
