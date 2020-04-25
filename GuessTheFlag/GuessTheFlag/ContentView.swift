@@ -9,15 +9,22 @@
 import SwiftUI
 
 //Day 24 Challenge 3
-struct Flag: View {
+struct Flag: View, Identifiable {
+    let id = UUID()
     var forCountry: String
-    
+    var action: () -> ()
+    @State var animationAmont = 0.0
     var body: some View {
-        Image(forCountry)
-            .renderingMode(.original)
-            .clipShape(Capsule())
-            .overlay(Capsule().stroke(Color.black, lineWidth: 1))
-            .shadow(color: .black, radius: 2)
+        Button(action: {
+            self.action()
+        }) {
+            Image(forCountry)
+                .renderingMode(.original)
+                .clipShape(Capsule())
+                .overlay(Capsule().stroke(Color.black, lineWidth: 1))
+                .shadow(color: .black, radius: 2)
+        }
+        .rotation3DEffect(.degrees(animationAmont), axis: (x: 1, y: 0, z: 0))
     }
 }
 
@@ -40,8 +47,13 @@ struct ContentView: View {
     @State private var scoreTitle = ""
     @State private var score = 0
     
+    @State private var animationAmount = 0.0
+    
+    @State private var flags: [Flag] = []
+    
     var body: some View {
-        ZStack {
+        print(flags.count)
+        return ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue,.black]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(.all)
             VStack(spacing: 30) {
                 VStack {
@@ -53,12 +65,8 @@ struct ContentView: View {
                         .fontWeight(.black)
                 }
                 
-                ForEach(0 ..< 3)  { number in
-                    Button(action: {
-                        self.flagTapped(number)
-                    }) {
-                        Flag(forCountry: self.countries[number])
-                    }
+                ForEach(flags)  { flag in
+                    flag
                 }
                 
                 Text("Current Score: \(score)")
@@ -79,11 +87,16 @@ struct ContentView: View {
                     })
             }
         }
+        .onAppear(perform: askQuestion)
     }
     
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
+            withAnimation {
+                flags[number].animationAmont += 360
+            }
+            
             scoreTitle = "Correct"
             score += 1
         } else {
@@ -95,7 +108,13 @@ struct ContentView: View {
     
     func askQuestion() {
         countries.shuffle()
+        flags = [
+            Flag(forCountry: self.countries[0], action: { self.flagTapped(0) }),
+            Flag(forCountry: self.countries[1], action: { self.flagTapped(1) }),
+            Flag(forCountry: self.countries[2], action: { self.flagTapped(2) }),
+        ]
         correctAnswer = Int.random(in: 0...2 )
+        
     }
 }
 
