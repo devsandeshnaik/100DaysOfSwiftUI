@@ -16,11 +16,11 @@ struct ExpenseItem: Identifiable, Codable {
 }
 
 class Expenses: ObservableObject {
-    @Published var items = [ExpenseItem]() {
+    @Published var items: [ExpenseItem] {
         didSet {
             let encoder = JSONEncoder()
             if let encoded = try? encoder.encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "Items" )
+                UserDefaults.standard.set(encoded, forKey: "Items")
             }
         }
     }
@@ -39,7 +39,7 @@ class Expenses: ObservableObject {
 
 struct ContentView: View {
     
-    @ObservedObject private var expenses = Expenses()
+    @ObservedObject var expenses = Expenses()
     @State private var showingAddExpense = false
     
     var body: some View {
@@ -54,32 +54,39 @@ struct ContentView: View {
                         }
                         Spacer()
                         Text("$\(item.amount)")
+                            .foregroundColor(self.getColorForAmount(amount: item.amount))
+                            .fontWeight(.heavy)
                     }
                 }
                 .onDelete(perform: removeItem)
             }
             .navigationBarTitle(Text("iExpense"))
+            .navigationBarItems(leading: EditButton())
             .navigationBarItems(trailing:
-                Button(action: {
-                    self.showingAddExpense.toggle()
-                }) {
-                    Image(systemName: "plus")
-                }
-            )
-                .sheet(isPresented: $showingAddExpense) {
-                    AddView(expenses: self.expenses)
-            }
+                HStack(spacing: 20) {
+                    EditButton()
+                    Button(action: {
+                        self.showingAddExpense.toggle()
+                    }) { Image(systemName: "plus") }
+            } )
+                
+                .sheet(isPresented: $showingAddExpense) { AddView(expenses: self.expenses) }
+            
         }
         
     }
     
+    func getColorForAmount(amount: Int) -> Color {
+        if amount <= 10 { return Color.green }
+        else if amount <= 100 { return Color.orange }
+        else { return Color.red }
+    }
     func removeItem(at offset: IndexSet) {
         expenses.items.remove(atOffsets: offset)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    
     static var previews: some View {
         ContentView()
     }

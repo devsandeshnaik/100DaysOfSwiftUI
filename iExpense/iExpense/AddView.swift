@@ -10,11 +10,13 @@ import SwiftUI
 
 struct AddView: View {
     @ObservedObject var expenses: Expenses
-    
+
     @State private var name = ""
-    @State private var type = "Persona"
+    @State private var type = "Personal"
     @State private var amount = ""
     static let types = ["Business", "Personal"]
+    
+    @State private var showInvlalidAmontAlert = false
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -36,10 +38,15 @@ struct AddView: View {
             .navigationBarItems(trailing: Button("Save") {
                 if let amount = Int(self.amount) {
                     let expenseItem = ExpenseItem(name: self.name, type: self.type, amount: amount)
-                    self.expenses.items.append(expenseItem)
+                    self.expenses.items = self.expenses.items + [expenseItem]
                     self.presentationMode.wrappedValue.dismiss()
+                } else {
+                    self.showInvlalidAmontAlert.toggle()
                 }
             })
+                .alert(isPresented: $showInvlalidAmontAlert) {
+                    Alert(title: Text("Invalid Amount"), message: Text("Amount must be numeric value"), dismissButton: .default(Text("OK")))
+            }
         }
     }
 }
