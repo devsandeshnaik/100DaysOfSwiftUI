@@ -13,7 +13,7 @@
 		025F397B245D9406009846A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025F397A245D9406009846A2 /* Assets.xcassets */; };
 		025F397E245D9406009846A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 025F397D245D9406009846A2 /* Preview Assets.xcassets */; };
 		025F3981245D9406009846A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 025F397F245D9406009846A2 /* LaunchScreen.storyboard */; };
-		02D0FF942465706600CC5CC3 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D0FF932465706600CC5CC3 /* SwiftUIView.swift */; };
+		02EDC98D246FF8150056A791 /* Day44.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC98C246FF8150056A791 /* Day44.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		025F397D245D9406009846A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		025F3980245D9406009846A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		025F3982245D9406009846A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		02D0FF932465706600CC5CC3 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		02EDC98C246FF8150056A791 /* Day44.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day44.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,6 @@
 		025F3968245D9405009846A2 = {
 			isa = PBXGroup;
 			children = (
-				02D0FF932465706600CC5CC3 /* SwiftUIView.swift */,
 				025F3973245D9405009846A2 /* Drawing */,
 				025F3972245D9405009846A2 /* Products */,
 			);
@@ -66,6 +65,7 @@
 				025F397F245D9406009846A2 /* LaunchScreen.storyboard */,
 				025F3982245D9406009846A2 /* Info.plist */,
 				025F397C245D9406009846A2 /* Preview Content */,
+				02EDC98C246FF8150056A791 /* Day44.swift */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -149,9 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02EDC98D246FF8150056A791 /* Day44.swift in Sources */,
 				025F3975245D9405009846A2 /* AppDelegate.swift in Sources */,
 				025F3977245D9405009846A2 /* SceneDelegate.swift in Sources */,
-				02D0FF942465706600CC5CC3 /* SwiftUIView.swift in Sources */,
 				025F3979245D9405009846A2 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
