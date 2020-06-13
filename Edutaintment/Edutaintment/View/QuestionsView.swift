@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct QuestionsView: View {
-    @Binding var startNewGame: Bool
+    @Binding var table: Int?
+    @Binding var numberOfQuestions: Int?
     @State var questions: [Question]
     
     @State private var questionCounter = 0
@@ -21,7 +22,7 @@ struct QuestionsView: View {
         VStack(spacing: 10) {
             Text(questions[questionCounter].question)
                 .font(.system(size: 60, weight: .bold, design: .rounded))
-                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                .frame(maxWidth: .infinity)
             
             Text ("=")
                 .font(.system(size: 60, weight: .bold, design: .rounded))
@@ -44,18 +45,20 @@ struct QuestionsView: View {
                 }
             }) {
                 Text("Next")
-                .font(.system(size: 30, weight: .bold, design: .rounded))
+                    .font(.system(size: 30, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.red)
                     .clipShape(Capsule())
+                    .frame(width: 200)
             }
             
             Spacer()
         }
         .alert(isPresented: $showFinalScore) { () -> Alert in
             Alert(title: Text("Your score \(getScore())"), message: Text("Keep praticing to get better"), dismissButton: .default(Text("Play Again"), action: {
-                self.startNewGame = true
+                self.table = nil
+                self.numberOfQuestions = nil
             }))
         }
     }
@@ -74,6 +77,6 @@ struct QuestionsView: View {
 
 struct QuestionsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionsView(startNewGame: .constant(false), questions: [Question.testQuestion])
+        QuestionsView(table: .constant(4), numberOfQuestions: .constant(5), questions: [Question.testQuestion])
     }
 }

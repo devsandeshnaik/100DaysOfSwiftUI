@@ -30,7 +30,8 @@ struct ContentView: View {
                     VStack(spacing: 24) {
                         Text("Select number of Questions")
                             .multilineTextAlignment(.center)
-                            .font(.system(size: 45, weight: .medium, design: .rounded))
+                            .lineLimit(0)
+                            .font(.system(size: 30, weight: .medium, design: .rounded))
                             .foregroundColor(.yellow)
                         
                         VStack(spacing: 8) {
@@ -54,7 +55,7 @@ struct ContentView: View {
                     }
                     .transition(.asymmetric(insertion: .scale, removal: .scale))
                 } else {
-                    QuestionsView(startNewGame: $restartGame, questions: getQuestions())
+                    QuestionsView(table: $table, numberOfQuestions: $numberOfQuestions, questions: getQuestions())
             }
         }
         

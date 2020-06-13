@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0200D77D2487FC9700E15ECE /* ShapeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0200D77C2487FC9700E15ECE /* ShapeAnimation.swift */; };
+		0200D77F2488025500E15ECE /* Spirograph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0200D77E2488025500E15ECE /* Spirograph.swift */; };
 		0258F54A248371460077937A /* Patterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0258F549248371460077937A /* Patterns.swift */; };
 		025F3975245D9405009846A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025F3974245D9405009846A2 /* AppDelegate.swift */; };
 		025F3977245D9405009846A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025F3976245D9405009846A2 /* SceneDelegate.swift */; };
@@ -17,9 +19,12 @@
 		027506DE2482163600BA2059 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027506DD2482163600BA2059 /* Shapes.swift */; };
 		027EA6DB24838EEF00EDD258 /* ImagePaints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EA6DA24838EEF00EDD258 /* ImagePaints.swift */; };
 		027EA6DD2483A40C00EDD258 /* MetalSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027EA6DC2483A40C00EDD258 /* MetalSupport.swift */; };
+		02A417E72487D62C00840CD6 /* Effects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A417E62487D62C00840CD6 /* Effects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0200D77C2487FC9700E15ECE /* ShapeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeAnimation.swift; sourceTree = "<group>"; };
+		0200D77E2488025500E15ECE /* Spirograph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spirograph.swift; sourceTree = "<group>"; };
 		0258F549248371460077937A /* Patterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patterns.swift; sourceTree = "<group>"; };
 		025F3971245D9405009846A2 /* Drawing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Drawing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		025F3974245D9405009846A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +37,7 @@
 		027506DD2482163600BA2059 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		027EA6DA24838EEF00EDD258 /* ImagePaints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePaints.swift; sourceTree = "<group>"; };
 		027EA6DC2483A40C00EDD258 /* MetalSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalSupport.swift; sourceTree = "<group>"; };
+		02A417E62487D62C00840CD6 /* Effects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,9 @@
 				0258F549248371460077937A /* Patterns.swift */,
 				027EA6DA24838EEF00EDD258 /* ImagePaints.swift */,
 				027EA6DC2483A40C00EDD258 /* MetalSupport.swift */,
+				02A417E62487D62C00840CD6 /* Effects.swift */,
+				0200D77C2487FC9700E15ECE /* ShapeAnimation.swift */,
+				0200D77E2488025500E15ECE /* Spirograph.swift */,
 				025F397A245D9406009846A2 /* Assets.xcassets */,
 				025F397F245D9406009846A2 /* LaunchScreen.storyboard */,
 				025F3982245D9406009846A2 /* Info.plist */,
@@ -158,6 +167,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0200D77F2488025500E15ECE /* Spirograph.swift in Sources */,
+				02A417E72487D62C00840CD6 /* Effects.swift in Sources */,
+				0200D77D2487FC9700E15ECE /* ShapeAnimation.swift in Sources */,
 				025F3975245D9405009846A2 /* AppDelegate.swift in Sources */,
 				025F3977245D9405009846A2 /* SceneDelegate.swift in Sources */,
 				025F3979245D9405009846A2 /* ContentView.swift in Sources */,
