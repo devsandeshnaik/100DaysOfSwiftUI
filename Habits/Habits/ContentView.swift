@@ -9,8 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var habits: [Habit]!
+
     var body: some View {
-        Text("Hello, World!")
+        List(habits) { habit in
+            Text(habit.name)
+        }
     }
 }
 

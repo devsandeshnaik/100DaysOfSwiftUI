@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+struct  Habit: Codable, Identifiable {
+    var id = UUID()
+    var name: String
+    var createdDate = Date()
+}
