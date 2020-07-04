@@ -50,7 +50,6 @@ struct Flower: Shape {
         }
         
         
-        
         return path
     }
 }

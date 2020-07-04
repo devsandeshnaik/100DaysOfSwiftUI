@@ -20,7 +20,10 @@ struct ContentView: View {
             path.move(to: CGPoint(x: 200, y: 100))
             path.addLine(to: CGPoint(x: 100, y: 300))
             path.addLine(to: CGPoint(x: 300, y: 300))
-            path.addLine(to: CGPoint(x: 200, y: 100))
+            //path.addLine(to: CGPoint(x: 200, y: 100))
+            
+            
+            path.closeSubpath()
         }
             //.fill(Color.orange)
             .stroke(Color.red.opacity(0.33), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
