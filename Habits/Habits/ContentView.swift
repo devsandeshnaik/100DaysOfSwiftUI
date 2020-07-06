@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var habits: [Habit]!
+    @State var habits = [Habit]()
 
     var body: some View {
         List(habits) { habit in
