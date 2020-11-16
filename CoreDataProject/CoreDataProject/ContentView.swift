@@ -12,9 +12,9 @@ import CoreData
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var moc
+    
     var body: some View {
-        Text("Hello worl")
-            .padding()
+       DynamicFilter()
     }
 }
 
