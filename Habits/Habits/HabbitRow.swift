@@ -9,13 +9,31 @@
 import SwiftUI
 
 struct HabbitRow: View {
+    
+    var habit: Habit
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            HStack {
+                Text(habit.name)
+                    .padding()
+                
+                Spacer()
+                
+                Text("23/28")
+                    .padding()
+            }
+            .clipped()
+            .border(Color.red, width: 2).cornerRadius(10)
+            
+        }
+        .frame(width: .infinity, height: .infinity, alignment: .center)
     }
 }
 
 struct HabbitRow_Previews: PreviewProvider {
     static var previews: some View {
-        HabbitRow()
+        HabbitRow(habit: Habit.testHabit)
+            .previewLayout(.sizeThatFits)
     }
 }

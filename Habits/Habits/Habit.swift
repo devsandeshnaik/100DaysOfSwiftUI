@@ -9,7 +9,11 @@
 import Foundation
 
 struct  Habit: Codable, Identifiable {
+    
+    static let testHabit = Habit(id: UUID(), name: "Journelling")
     var id = UUID()
     var name: String
     var createdDate = Date()
 }
+
+

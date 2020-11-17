@@ -10,9 +10,10 @@ import CoreImage.CIFilterBuiltins
 import SwiftUI
 
 struct ContentView: View {
-    @State private var image: Image?
-    @State private var isImagePickerShown = false
     
+    @State private var image: Image?
+    @State private var isShowingImagePicker: Bool = false
+    @State private var inputUIImage: UIImage?
     var body: some View {
         VStack {
             image?
@@ -20,15 +21,18 @@ struct ContentView: View {
                 .scaledToFit()
             
             Button("Select Image") {
-                isImagePickerShown = true
+                self.isShowingImagePicker = true
             }
         }
-        .sheet(isPresented: $isImagePickerShown, content: {
-            ImagePicker()
-        })
+        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: $inputUIImage)
+        }
     }
     
-    
+    func loadImage() {
+        guard let inputImage = inputUIImage else { return }
+        image = Image(uiImage: inputImage)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
