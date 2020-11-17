@@ -8,6 +8,21 @@
 
 import Foundation
 
-class HabitsModel {
+class HabitsModel: ObservableObject {
+    @Published var allHabits = [Habit(id: UUID(), name: "Journelling"),
+                                Habit(id: UUID(), name: "Journelling"),
+                                Habit(id: UUID(), name: "Journelling"),
+                                Habit(id: UUID(), name: "Journelling"),
+                                Habit(id: UUID(), name: "Journelling"),
+                                Habit(id: UUID(), name: "Journelling"),
+                                Habit(id: UUID(), name: "Journelling")]
     
+    func addHabit(_ habit: Habit) {
+        allHabits.append(habit)
+    }
+    
+    func removeHabit(_ habit: Habit) {
+        allHabits.removeAll { $0.id == habit.id }
+    }
+
 }

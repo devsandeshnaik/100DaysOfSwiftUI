@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct  Habit: Codable, Identifiable {
+struct  Habit: Codable, Identifiable, Hashable {
     
     static let testHabit = Habit(id: UUID(), name: "Journelling")
-    var id = UUID()
+    var id: UUID
     var name: String
     var createdDate = Date()
 }

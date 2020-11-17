@@ -10,17 +10,44 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var habits = [Habit]()
+    @ObservedObject var model: HabitsModel
 
     var body: some View {
-        List(habits) { habit in
-            Text(habit.name)
+        
+        ZStack {
+            VStack {
+                HStack {
+                    Text("Habits")
+                        .font(.largeTitle)
+                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    
+                    Spacer()
+                    
+                    Button(action: {}, label: {
+                        Image(systemName: "plus.app")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 44, height: 44, alignment: .center)
+                            .cornerRadius(5.0)
+                            .foregroundColor(.green)
+                            
+                            
+                    })
+                }.padding()
+                
+                List(model.allHabits) { habit in
+                    HabbitRow(habit: habit)
+                }.onAppear {
+                    UITableView.appearance().separatorStyle = .none
+                }
+            }
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(model: HabitsModel())
+            .previewDevice("iPhone 11")
     }
 }

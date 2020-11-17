@@ -23,11 +23,10 @@ struct HabbitRow: View {
                 Text("23/28")
                     .padding()
             }
-            .clipped()
-            .border(Color.red, width: 2).cornerRadius(10)
-            
         }
         .frame(width: .infinity, height: .infinity, alignment: .center)
+        .background(Color.red)
+        .cornerRadius(10)
     }
 }
 
