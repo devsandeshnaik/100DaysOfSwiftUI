@@ -14,8 +14,10 @@ struct EditView: View {
     @State private var name : String
     @State private var description : String
     
+    @StateObject private var viewModel: EditViewModel
     
     init(location: Location, onSave: @escaping (Location) -> Void) {
+        _viewModel = StateObject(wrappedValue: EditViewModel())
         self.location = location
         self.onSave = onSave
         _name = State(initialValue: location.name)
@@ -28,6 +30,22 @@ struct EditView: View {
                 Section {
                     TextField("Place name", text: $name)
                     TextField("Description",text: $description)
+                }
+                Section("Nearby…") {
+                    switch viewModel.loadingState {
+                    case .loaded:
+                        ForEach(viewModel.pages, id: \.pageid) { page in
+                            Text(page.title)
+                                .font(.headline)
+                            + Text(": ") +
+                            Text(page.description)
+                                .italic()
+                        }
+                    case .loading:
+                        Text("Loading…")
+                    case .failed:
+                        Text("Please try again later.")
+                    }
                 }
             }
             .navigationTitle("Place Details")
@@ -43,8 +61,13 @@ struct EditView: View {
                     dismiss()
                 }
             }
+            .task {
+                await viewModel.fetchNearbyPlaces(for: location)
+            }
         }
     }
+    
+    
 }
 
 struct EditView_Previews: PreviewProvider {
